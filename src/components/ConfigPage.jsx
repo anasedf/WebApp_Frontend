@@ -5,6 +5,9 @@ export default function ConfigPage() {
     const [config, setConfig] = useState(null);
 
     useEffect(() => {
+        console.log("API_BASE:", API_BASE);
+        console.log("DRONE_ID:", DRONE_ID);
+
         fetch(`${API_BASE}/configs/${DRONE_ID}`)
             .then(res => res.json())
             .then(data => {
