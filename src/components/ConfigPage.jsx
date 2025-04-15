@@ -1,85 +1,62 @@
-import { useEffect, useState } from 'react';
-import { API_BASE, DRONE_ID } from '../config';
+import React from 'react';
 
-export default function ConfigPage() {
-    const [config, setConfig] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        console.log("API_BASE:", API_BASE);
-        console.log("DRONE_ID:", DRONE_ID);
-
-        fetch(`${API_BASE}/configs/${DRONE_ID}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log("✅ Config loaded:", data);
-                setConfig(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error("❌ Failed to load config", err);
-                setError("Failed to load configuration");
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading) return (
-        <div className="card-container">
-            <div className="status-indicator">Loading configuration data...</div>
-        </div>
-    );
-
-    if (error) return (
-        <div className="card-container">
-            <div className="status-indicator" style={{color: '#f85149'}}>{error}</div>
-        </div>
-    );
-
-    if (!config) return null;
-
-    // Handle potential missing data gracefully
-    const lastUpdated = new Date().toLocaleString();
+function ConfigPage({ droneConfig }) {
+    if (!droneConfig) {
+        return (
+            <div className="text-center">
+                <p>No configuration data available.</p>
+            </div>
+        );
+    }
 
     return (
-        <div className="card-container">
-            <div className="card-header">
-                <span className="icon">ℹ️</span>
-                <h2>Drone Configuration</h2>
-            </div>
-            
-            <div className="data-row">
-                <div className="data-label">Drone ID</div>
-                <div className="data-value">{config.drone_id || DRONE_ID}</div>
-            </div>
-            
-            <div className="data-row">
-                <div className="data-label">Drone Name</div>
-                <div className="data-value">{config.drone_name || 'Unknown'}</div>
-            </div>
-            
-            <div className="data-row">
-                <div className="data-label">Light</div>
-                <div className="data-value">
-                    <span className={`badge ${config.light === 'ON' ? 'badge-on' : 'badge-off'}`}>
-                        {config.light || 'OFF'}
-                    </span>
+        <div className="config-page">
+            <div className="row">
+                <div className="col-md-6 d-flex justify-content-center">
+                    <div className="content-section">
+                        <h1 className="display-4 mb-4">
+                            <span className="text-highlight">DRONE CONFIGS</span><br />
+                            <span className="text-bold">65011173 </span><br />
+                            <span className="text-bold">ANAS NILOH</span>
+                        </h1>
+                        <p className="lead">
+                            IoT System & Information Engineering - KMITL <br />
+                            2025 01236337 WEB APPLICATION DEVELOPMENT
+                        </p>
+                    </div>
                 </div>
-            </div>
-            
-            <div className="data-row">
-                <div className="data-label">Country</div>
-                <div className="data-value">{config.country || 'Unknown'}</div>
-            </div>
-            
-            <div className="data-row">
-                <div className="data-label">Weight</div>
-                <div className="data-value">{config.weight ? `${config.weight} kg` : 'N/A'}</div>
-            </div>
-            
-            <div className="last-updated">
-                Last updated: {config.last_updated || lastUpdated}
+                <div className="col-md-6">
+                    <div className="drone-info-card">
+                        <div className="drone-info-header">
+                            <h2>Drone Configuration</h2>
+                        </div>
+                        <div className="drone-info-content">
+                            <div className="info-item">
+                                <span className="info-label">Drone ID</span>
+                                <span className="info-value">{droneConfig.drone_id}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">Drone Name</span>
+                                <span className="info-value">{droneConfig.drone_name}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">Light</span>
+                                <span className="info-value">{droneConfig.light}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">Country</span>
+                                <span className="info-value">{droneConfig.country}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="info-label">Weight</span>
+                                <span className="info-value">{droneConfig.weight} kg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
+
+export default ConfigPage;

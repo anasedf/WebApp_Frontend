@@ -1,42 +1,292 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* Base styling */
+:root {
+  --neon-blue: #4dabff;
+  --neon-green: #c7ff00;
+  --dark-bg: #050b18;
+  --accent-color: #e53935;
+  --text-light: #ffffff;
+  --card-bg: rgba(26, 35, 56, 0.5);
+  --glassmorphism-border: rgba(255, 255, 255, 0.1);
+  --glassmorphism-shadow: rgba(0, 0, 0, 0.15);
+  --glassmorphism-blur: 10px;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: 'Helvetica Neue', sans-serif;
+  background-image: radial-gradient(circle at 10% 10%, #16163a 0%, #050b18 70%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+/* Navigation */
+.navbar {
+  background-color: rgba(9, 14, 33, 0.7);
+  backdrop-filter: blur(var(--glassmorphism-blur));
+  -webkit-backdrop-filter: blur(var(--glassmorphism-blur));
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--glassmorphism-border);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.nav-link {
+  color: var(--text-light) !important;
+  font-weight: 600;
+  margin: 0 0.75rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--neon-blue) !important;
+}
+
+.nav-link:hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--neon-blue);
+  bottom: -5px;
+  left: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.text-highlight {
+  color: var(--neon-blue);
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.display-4 {
+  line-height: 1.1;
+}
+
+/* Layout Components */
+.content-section {
+  padding: 2rem 0;
+}
+
+/* Glassmorphism Card Styling */
+.drone-info-card, .form-card, .log-table {
+  background: rgba(25, 32, 54, 0.4);
+  backdrop-filter: blur(var(--glassmorphism-blur));
+  -webkit-backdrop-filter: blur(var(--glassmorphism-blur));
+  border-radius: 16px;
+  border: 1px solid var(--glassmorphism-border);
+  box-shadow: 0 4px 30px var(--glassmorphism-shadow);
+  overflow: hidden;
+}
+
+/* Config Page */
+.drone-info-card {
   padding: 2rem;
-  text-align: center;
+/*   border-left: 4px solid var(--neon-blue);
+ */}
+
+.drone-info-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  font-weight: 500;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.info-label {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.info-value {
+  font-weight: 500;
+}
+
+/* Submit Page */
+.form-card {
+  padding: 2rem;
+/*   border-left: 4px solid var(--neon-blue);
+ */}
+
+.form-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  font-weight: 500;
+}
+
+.form-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.form-control {
+  background-color: rgba(25, 32, 54, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-light);
+  padding: 0.8rem 1rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.form-control:focus {
+  background-color: rgba(25, 32, 54, 0.5);
+  color: var(--text-light);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 0.25rem rgba(77, 171, 255, 0.25);
+}
+
+.info-display {
+  background-color: rgba(9, 14, 33, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.submit-btn {
+  background-color: var(--neon-blue);
+  border-color: var(--neon-blue);
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 2.5rem;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(77, 171, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: rgba(77, 171, 255, 0.8);
+  border-color: rgba(77, 171, 255, 0.8);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(77, 171, 255, 0.4);
+}
+
+.submit-btn:disabled {
+  background-color: rgba(77, 171, 255, 0.5);
+  border-color: rgba(77, 171, 255, 0.5);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Logs Page */
+.logs-subtitle {
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+}
+
+.log-table {
+  overflow: hidden;
+  color: var(--text-light);
+}
+
+.log-table thead {
+  background-color: rgba(9, 14, 33, 0.6);
+}
+
+.log-table th {
+  padding: 1rem;
+  font-weight: 500;
+  color: var(--neon-blue);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.log-table td {
+  padding: 1rem;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+  background-color: rgba(25, 32, 54, 0.2);
+}
+
+.log-table tr:hover td {
+  background-color: rgba(77, 171, 255, 0.1);
+}
+
+.text-danger {
+  color: #ff4d4d !important;
+}
+
+.text-info {
+  color: #4dabff !important;
+}
+
+/* Adding shine effect to cards */
+.drone-info-card::before, .form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .info-item, .info-row {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .info-value {
+    margin-top: 0.5rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .content-section {
+    margin-bottom: 2rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  
+  .drone-info-card, .form-card {
+    padding: 1.5rem;
+  }
 }
