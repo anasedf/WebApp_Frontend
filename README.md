@@ -2,7 +2,7 @@
 
 A web application for monitoring drone temperature data with a modern UI.
 
-![Drone Dashboard](web.png)
+![Drone Dashboard](https://raw.githubusercontent.com/anasedf/WebApp_Frontend/refs/heads/main/public/web.png)
 
 ## Features
 
