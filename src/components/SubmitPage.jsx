@@ -15,7 +15,7 @@ function SubmitPage({ droneConfig }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!celsius || isNaN(parseFloat(celsius))) {
       setSubmitStatus({
         message: 'Please enter a valid temperature value',
@@ -69,14 +69,18 @@ function SubmitPage({ droneConfig }) {
       <div className="row">
         <div className="col-md-6">
           <div className="content-section">
-            <h1 className="display-4 mb-4">
-              <span className="text-highlight">THE CREATIVE</span><br />
-              <span className="text-bold">EDGE!</span>
+            <div className='drone'>
+              <img src="image.png" className='drone-image'></img>
+              <h1 className="display-4 mb-4">
+              <span className="text-highlight">OPTIMIZE </span><br />
+              <span className="text-bold">TEMP DATA</span>
             </h1>
-            <p className="lead">
+            </div>
+            
+            {/* <p className="lead">
               Track your drone's performance with real-time temperature logs.
               Monitor conditions and ensure optimal flight performance.
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="col-md-6">
@@ -87,8 +91,12 @@ function SubmitPage({ droneConfig }) {
                 <div className="mb-4">
                   <div className="info-display">
                     <div className="info-row">
-                      <span>Drone:</span>
-                      <span>{droneConfig.drone_name} (ID: {droneConfig.drone_id})</span>
+                      <span>Drone ID:</span>
+                      <span>{droneConfig.drone_id}</span>
+                    </div>
+                    <div className="info-row">
+                      <span>Drone Name:</span>
+                      <span>{droneConfig.drone_name}</span>
                     </div>
                     <div className="info-row">
                       <span>Country:</span>
@@ -96,7 +104,7 @@ function SubmitPage({ droneConfig }) {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="mb-4">
                   <label htmlFor="celsius" className="form-label">Temperature (°C)</label>
                   <input
@@ -109,16 +117,16 @@ function SubmitPage({ droneConfig }) {
                     required
                   />
                 </div>
-                
+
                 {submitStatus.message && (
                   <div className={`alert ${submitStatus.isError ? 'alert-danger' : 'alert-success'}`}>
                     {submitStatus.message}
                   </div>
                 )}
-                
-                <button 
-                  type="submit" 
-                  className="btn btn-primary submit-btn" 
+
+                <button
+                  type="submit"
+                  className="btn btn-primary submit-btn"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

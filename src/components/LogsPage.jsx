@@ -45,9 +45,9 @@ function LogsPage({ droneId }) {
   return (
     <div className="logs-page">
       <h1 className="mb-4">Temperature Logs</h1>
-      <div className="logs-subtitle">
+      {/* <div className="logs-subtitle">
         <span>Showing latest 25 log entries</span>
-      </div>
+      </div> */}
 
       {loading ? (
         <div className="text-center my-5">
@@ -83,8 +83,8 @@ function LogsPage({ droneId }) {
                   <td>{log.drone_id}</td>
                   <td>{log.drone_name}</td>
                   <td>
-                    <span className={log.celsius > 40 ? 'text-danger' : log.celsius < 10 ? 'text-info' : ''}>
-                      {log.celsius}°C
+                    <span className={log.celsius > 100 ? 'text-danger' : log.celsius < 0 ? 'text-info' : ''}>
+                      {log.celsius}
                     </span>
                   </td>
                 </tr>

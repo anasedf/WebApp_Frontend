@@ -8,11 +8,12 @@ function ConfigPage({ droneConfig }) {
             </div>
         );
     }
+    const lightStatus = droneConfig.light.toLowerCase();
 
     return (
         <div className="config-page">
             <div className="row">
-                <div className="col-md-6 d-flex justify-content-center">
+                <div className="col-md-6">
                     <div className="content-section">
                         <h1 className="display-4 mb-4">
                             <span className="text-highlight">DRONE CONFIGS</span><br />
@@ -41,15 +42,11 @@ function ConfigPage({ droneConfig }) {
                             </div>
                             <div className="info-item">
                                 <span className="info-label">Light</span>
-                                <span className="info-value">{droneConfig.light}</span>
+                                <span className={`info-value light-${lightStatus}`}>{droneConfig.light}</span> {/* เพิ่ม class */}
                             </div>
                             <div className="info-item">
                                 <span className="info-label">Country</span>
                                 <span className="info-value">{droneConfig.country}</span>
-                            </div>
-                            <div className="info-item">
-                                <span className="info-label">Weight</span>
-                                <span className="info-value">{droneConfig.weight} kg</span>
                             </div>
                         </div>
                     </div>
