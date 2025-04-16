@@ -44,10 +44,10 @@ function App() {
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
-                    <Link className="nav-link" to="/">Config</Link>
+                    <Link className="nav-link" to="/">View Config</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/submit">Submit Log</Link>
+                    <Link className="nav-link" to="/submit">Temperature Log</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/logs">View Logs</Link>
